@@ -21,6 +21,7 @@ jobs:
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./
           server-dir: /www/administrativo/
+          state: knowndir
           dangerous-clean-slate: false
           log-level: verbose
           exclude: |
