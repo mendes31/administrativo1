@@ -26,10 +26,11 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          local-dir: ./    # pasta local do repositório
-          server-dir: ./   # tenta usar o diretório atual do usuário FTP
-          dangerous-clean-slate: false  # não deleta arquivos existentes
-          log-level: verbose  # adiciona logs detalhados para debug
+          local-dir: ./
+          server-dir: ./   # usa o diretório de trabalho padrão do usuário FTP
+          dangerous-clean-slate: false
+          log-level: verbose
+          timeout: 300000  # timeout de 5 minutos
           exclude: |
             **/.git*
             **/.git*/**
