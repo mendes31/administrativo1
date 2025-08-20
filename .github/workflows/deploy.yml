@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./
-          server-dir: /www/administrativo/   # tenta usar a raiz do usuário FTP
+          server-dir: ./www/administrativo/   # tenta usar a raiz do usuário FTP
           dangerous-clean-slate: false
           log-level: verbose
           exclude: |
