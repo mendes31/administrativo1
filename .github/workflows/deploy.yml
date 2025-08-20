@@ -1,4 +1,4 @@
-name: Deploy PHP para Kinghost
+name: Deploy PHP para Kinghost (Estratégia Dividida)
  
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
  
-      - name: Deploy via FTP
+      - name: Deploy Core Files (PHP, Config)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -23,8 +23,7 @@ jobs:
           server-dir: ./www/administrativo/
           dangerous-clean-slate: false
           log-level: verbose
-          timeout: 900000  # timeout de 15 minutos
-          security: implicit  # tenta usar FTPS se disponível
+          timeout: 60000  # 60 segundos (limite do servidor)
           exclude: |
             .git/
             .git/**
@@ -48,3 +47,40 @@ jobs:
             DataTables/**
             startbootstrap-sb-admin-gh-pages/
             startbootstrap-sb-admin-gh-pages/**
+            app/adms/Views/**
+            public/adms/image/**
+            public/adms/uploads/**
+            public/adms/css/**
+            public/adms/js/**
+            public/adms/jquery/**
+            public/adms/DataTables/**
+ 
+      - name: Deploy Views (Templates)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: ./app/adms/Views/
+          server-dir: ./www/administrativo/app/adms/Views/
+          dangerous-clean-slate: false
+          log-level: verbose
+          timeout: 60000
+          exclude: |
+            **/.DS_Store
+            **/*.log
+ 
+      - name: Deploy Public Assets
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: ./public/
+          server-dir: ./www/administrativo/public/
+          dangerous-clean-slate: false
+          log-level: verbose
+          timeout: 60000
+          exclude: |
+            **/.DS_Store
+            **/*.log
