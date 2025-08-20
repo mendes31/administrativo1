@@ -1,4 +1,4 @@
-name: Deploy PHP para Kinghost
+name: Deploy PHP para Kinghost (Estratégia Dividida)
  
 on:
   push:
@@ -13,18 +13,17 @@ jobs:
       - name: Checkout código
         uses: actions/checkout@v4
  
-      - name: Deploy via FTP
+      - name: Deploy Core Files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./
-          server-dir: ./www/administrativo/
+          server-dir: /www/administrativo/
           dangerous-clean-slate: false
           log-level: verbose
-          timeout: 900000  # timeout de 15 minutos
-          security: implicit  # tenta usar FTPS se disponível
+          timeout: 900000  # 15 minutos
           exclude: |
             .git/
             .git/**
@@ -48,3 +47,6 @@ jobs:
             DataTables/**
             startbootstrap-sb-admin-gh-pages/
             startbootstrap-sb-admin-gh-pages/**
+            app/adms/Views/**
+            public/adms/image/**
+            public/adms/uploads/**
