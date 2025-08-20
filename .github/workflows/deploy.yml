@@ -20,7 +20,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./
-          server-dir: /www
+          server-dir: /www/
           state: knowndir
           dangerous-clean-slate: false
           log-level: verbose
