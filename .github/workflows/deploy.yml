@@ -27,7 +27,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./    # pasta local do repositório
-          server-dir: ./   # pasta atual do usuário FTP (mais seguro)
+          server-dir: /www/administrativo/  # pasta administrativo que já existe no servidor
           dangerous-clean-slate: false  # não deleta arquivos existentes
           exclude: |
             **/.git*
