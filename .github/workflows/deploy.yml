@@ -12,6 +12,15 @@ jobs:
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
+        with:
+          repository: mendes31/administrativo1.git  # seu repositório correto
+ 
+      - name: Listar arquivos para verificação
+        run: |
+          echo "=== ESTRUTURA DE ARQUIVOS ==="
+          ls -la
+          echo "=== ARQUIVOS PHP ENCONTRADOS ==="
+          find . -name "*.php" | head -10
  
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -19,5 +28,5 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          local-dir: ./    # pasta do seu projeto no repositório
-          server-dir: /www/administrativo/  # pasta no servidor da Kinghost
+          local-dir: ./    # pasta local do repositório
+          server-dir: /www/administrativo/  # pasta "www" no servidor Kinghost
