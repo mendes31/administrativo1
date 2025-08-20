@@ -1,0 +1,35 @@
+name: Deploy PHP para Kinghost (Alternativo)
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v3
+ 
+      - name: Deploy via FTP - Tentativa 1
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          local-dir: ./
+          server-dir: /
+          dangerous-clean-slate: false
+          log-level: verbose
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.vscode/**
+            **/logs/**
+            **/vendor/**
+            **/bootstrap-5.3.3-dist/**
+            **/DataTables/**
+            **/startbootstrap-sb-admin-gh-pages/**
