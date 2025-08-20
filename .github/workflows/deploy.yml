@@ -27,7 +27,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./
-          server-dir: ./   # usa o diretório de trabalho padrão do usuário FTP
+          server-dir: /www/administrativo/   # usa o diretório de trabalho padrão do usuário FTP
           dangerous-clean-slate: false
           log-level: verbose
           timeout: 300000  # timeout de 5 minutos
