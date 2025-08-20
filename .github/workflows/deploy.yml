@@ -12,8 +12,6 @@ jobs:
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
-        with:
-          repository: mendes31/administrativo1.git  # seu repositório correto
  
       - name: Listar arquivos para verificação
         run: |
@@ -29,4 +27,15 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./    # pasta local do repositório
-          server-dir: /www/administrativo/  # pasta "www" no servidor Kinghost
+          server-dir: ./   # pasta atual do usuário FTP (mais seguro)
+          dangerous-clean-slate: false  # não deleta arquivos existentes
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/.vscode/**
+            **/logs/**
+            **/vendor/**
+            **/bootstrap-5.3.3-dist/**
+            **/DataTables/**
+            **/startbootstrap-sb-admin-gh-pages/**
