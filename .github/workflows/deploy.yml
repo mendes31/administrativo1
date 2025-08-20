@@ -20,4 +20,4 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           local-dir: ./    # pasta do seu projeto no repositório
-          server-dir: /public_html/  # pasta no servidor da Kinghost
+          server-dir: /www/  # pasta no servidor da Kinghost
