@@ -25,3 +25,6 @@ app/adms/Controllers/serveFile/debug_path_service.txt
 app/adms/Controllers/serveFile/log_servefile.txt
 app/logs/filtro_global_debug.log
 app/logs/session_debug2.log
+
+# Ignorar pasta .vscode
+.vscode/
